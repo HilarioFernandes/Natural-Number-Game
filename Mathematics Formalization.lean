@@ -1,1 +1,1 @@
-import «Mathematics Formalization».Basic
+import «Mathematics Formalization».NaturalNumberGame
