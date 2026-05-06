@@ -253,11 +253,23 @@ Our first proposition in this section is analogous to \texttt{add\_zero} (rather
   The type $0 + n = n$ is inhabited for all $n \in \mathbb{N}$.
 \end{proposition}
 \begin{proof}
-  We can prove this proposition by induction on $n$. Base case: $n = 0$. By \texttt{add\_zero}, type $0 + 0 = 0$ is inhabited. Inductive step: Assume that the type $0 + n = n$ is inhabited for some $n \in \mathbb{N}$. We wish to show that type $0 + \text{succ}(n) = \text{succ}(n)$ is inhabited. By $\texttt{add\_succ}$, type $0 + \text{succ}(n) = \text{succ}(0 + n)$ is inhabited. Thus, we can rewrite the type $0 + \text{succ}(n) = \text{succ}(n)$ as $\text{succ}(0 + n) = \text{succ}(n)$. Now, by the inductive hypothesis (the inhabitant of $0 + n = n$) we can rewrite the type $\text{succ}(0 + n) = \text{succ}(n)$ as $\text{succ}(n) = \text{succ}(n)$.
+  We can prove this proposition by induction on $n$. Base case: $n = 0$, meaning we wish to prove the type $0 + 0 = 0$ is inhabited. By \texttt{add\_zero}, type $0 + 0 = 0$ is inhabited. Inductive step: Assume that the type $0 + n = n$ is inhabited for some $n \in \mathbb{N}$: we wish to show that type $0 + \text{succ}(n) = \text{succ}(n)$ is inhabited. By $\texttt{add\_succ}$, type $0 + \text{succ}(n) = \text{succ}(0 + n)$ is inhabited. Thus, we can rewrite the type $0 + \text{succ}(n) = \text{succ}(n)$ as $\text{succ}(0 + n) = \text{succ}(n)$. Now, by the inductive hypothesis (the inhabitant of $0 + n = n$) we can rewrite the type $\text{succ}(0 + n) = \text{succ}(n)$ as $\text{succ}(n) = \text{succ}(n)$.
   The inhabitant $\text{refl}_{\text{succ}(n)}$ concludes the proof.
 \end{proof}
 
 The inhabitant will be called $\texttt{zero\_add}$.
+
+Now, we wish to prove the following:
+
+\begin{proposition}
+  The type $\text{succ}(a) + b = \text{succ}(a+b)$ is inhabited for all $a, b \in \mathbb{N}$.
+\end{proposition}
+\begin{proof}
+  We can prove this proposition by induction on $b$. Base case: $b = 0$, meaning we wish to prove $\text{succ} (a) + 0 = \text{succ} (a+0)$ is inhabited. By \texttt{add\_zero}, type $\text{succ}(a) + 0 = \text{succ}(a)$ is inhabited. Thus, we can rewrite the type $\text{succ} (a) + 0 = \text{succ} (a+0)$ as $\text{succ}(a) = \text{succ}(a+0)$. By \texttt{add\_zero} again, type $a+0=a$ is inhabited. Thus, we can rewrite the type $\text{succ}(a) = \text{succ}(a+0)$ as $\text{succ}(a) = \text{succ}(a)$. The inhabitant $\text{refl}_{\text{succ}(a)}$ concludes the proof of the base case.
+  
+  Inductive step: Assume that the type $\text{succ}(a) + b = \text{succ}(a+b)$ is inhabited for some $b \in \mathbb{N}$. We wish to show that type $\text{succ}(a) + \text{succ}(b) = \text{succ}(a+\text{succ}(b))$ is inhabited. By \texttt{add\_succ}, type $\text{succ}(a) + \text{succ}(b) = \text{succ}(\text{succ}(a) + b)$ is inhabited. Thus, we can rewrite the type $\text{succ}(a) + \text{succ}(b) = \text{succ}(a+\text{succ}(b))$ as $\text{succ}(\text{succ}(a) + b) = \text{succ}(a+\text{succ}(b))$. By \texttt{add\_succ} again, type $\text{succ}(\text{succ}(a)+b) = \text{succ}(\text{succ}(a+b))$ is inhabited. Thus, we can rewrite the type $\text{succ}(\text{succ}(a) + b) = \text{succ}(a+\text{succ}(b))$ as $\text{succ}(\text{succ}(a)+b) = \text{succ}(\text{succ}(a+b))$. Now, by the inductive hypothesis (the inhabitant of $\text{succ}(a) + b = \text{succ}(a+b)$) we can rewrite the type $\text{succ}(\text{succ}(a) + b) = \text{succ}(\text{succ}(a+b))$ as $\text{succ}(\text{succ}(a+b)) = \text{succ}(\text{succ}(a+b))$.
+  The inhabitant $\text{refl}_{\text{succ}(\text{succ}(a+b))}$ concludes the proof.
+\end{proof}
 
 
 
