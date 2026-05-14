@@ -271,6 +271,16 @@ Now, we wish to prove the following:
   The inhabitant $\text{refl}_{\text{succ}(\text{succ}(a+b))}$ concludes the proof.
 \end{proof}
 
+Finally, we're able to prove the commutativity of addition:
+
+\begin{proposition}
+  The type $a + b = b + a$ is inhabited for all $a, b \in \mathbb{N}$.
+\end{proposition}
+\begin{proof}
+  We shall prove this by induction on $b$. Base case: $b = 0$, meaning we wish to prove $a + 0 = 0 + a$ is inhabited. By $\texttt{zero\_add}$, type $0 + a = a$ is inhabited. Thus, we can rewrite the type $a + 0 = 0 + a$ as $a + 0 = a$. But by $\texttt{add\_zero}$, type $a + 0 = a$ is inhabited. Thus, we can rewrite $a = a + 0$ as $a = a$. The inhabitant $\text{refl}_a$ concludes the proof of the base case. 
+  
+  Inductive step: Assume that the type $a + d = d + a$ is inhabited for some $d \in \mathbb{N}$. We wish to show that type $a + \text{succ}(d) = \text{succ}(d) + a$ is inhabited. By $\texttt{add\_succ}$, type $a + \text{succ}(d) = \text{succ}(a + d)$ is inhabited. Thus, we can rewrite the type $a + \text{succ}(d) = \text{succ}(d) + a$ as $\text{succ}(a+d) = \text{succ}(d) + a$. Now, by $\texttt{succ\_add}$, type $\text{succ}(d) + a = \text{succ}(d+a)$ is inhabited. Thus, we can rewrite $\text{succ}(a+d) = \text{succ}(d) + a$ as $\text{succ}(a+d) = \text{succ}(d+a)$. Now, by the inductive hypothesis (the inhabitant of $a+d = d+a$), we can rewrite the type $\text{succ}(a+d) = \text{succ}(d+a)$ as $\text{succ}(d+a) = \text{succ}(d+a)$. The inhabitant $\text{refl}_{\text{succ}(d+a)}$ concludes the proof. 
+\end{proof} 
 
 
 
